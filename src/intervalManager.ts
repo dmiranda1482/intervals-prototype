@@ -23,10 +23,20 @@ export class IntervalManager {
         this.timeStampArray.push(openStamp)
         this.timeStampArray.push(closeStamp)
 
-        // sort
+        // sort sort by time, if the times are equal, then open first
+        // this avoid contiguous intervals in the next step
+        this.timeStampArray.sort((a, b) => {
+            let delta = a.time - b.time
+            if (delta == 0) {
+                // priorize open first
+                delta = a.action === 'open' ? 1 : -1
+            }
+            return delta
+        }
+        )
 
         // prune stamps
-
+        
         // recompute
     }
 
