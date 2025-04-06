@@ -50,9 +50,13 @@ function iterateToResolveInternalMerges(intervalArray: Interval[]): Interval[] {
     const maxIteration = intervalArray.length
     let overlapingInThisIteration = false
     for(let iteration=0; iteration <= maxIteration; iteration++) {
-        
+        console.log(`iteration: ${iteration}`)
         const newIntervalArray = iterateToResolveInternalMerges(intervalArray)
         const overlapingInThisIteration = newIntervalArray.length !== intervalArray.length
+        if (newIntervalArray.length > intervalArray.length) {
+            console.log(`#### ISSUE `)
+            break // DEBUG
+        }
         intervalArray = newIntervalArray
         console.log(`#### 2 intervalArray merged: ${JSON.stringify(intervalArray)}`)
 
