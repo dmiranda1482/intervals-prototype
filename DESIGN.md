@@ -32,7 +32,7 @@ When merging two intervals, three cases migh ocour:
 
 However, the case 2) merging partially overlaping intervals [a, b] with [c, d] will result in an interval of the type [min(a,c), max(b,d)] as in case 3).
 
-So maybe I can jus:
+So maybe I can just:
 1) compute a `trial single merged interval` with [min(a,c), max(b,d)] = [x, y], and
 2) verify if I am in case 1, by checking that if the distance betwen extremes of the resulting intreval exceeded the sum of distances between extremes the two given intervals
 distance(a,b) + distance(c,d) < distance (x,y)
