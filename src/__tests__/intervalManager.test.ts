@@ -65,3 +65,38 @@ test("should return [[1,7]]", () => {
     // Assert
     expect(obtainedArray).toStrictEqual(expectedArray);
   });
+
+
+  test("should return [[0,50]] adds the intervals two times", () => {
+    // Arrange
+    const expectedArray = [[0, 50]];
+    const manager = new IntervalManager()
+    
+    // Act
+    const intervals: Interval[] = [0, 3, 1, 2, 4].map((x) => [ x*10, (x+1)*10])
+    intervals.forEach((x) => manager.addInterval(x))
+    intervals.forEach((x) => manager.addInterval(x))
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+  test("should return an array of size VeryLargeNumber", () => {
+    // Arrange
+    const VeryLargeNumber = 1000
+    const manager = new IntervalManager()
+    
+    // Act
+    for(let i=1; i<=VeryLargeNumber; i++) {
+        manager.addInterval([i, i+0.5])
+    }
+    
+    const obtainedSize = manager.getIntervals().length;
+    //console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedSize).toEqual(VeryLargeNumber);
+  });
