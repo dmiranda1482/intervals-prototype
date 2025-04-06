@@ -18,8 +18,22 @@ export class IntervalManager {
 
 
     public addInterval(interval: Interval) {
-        const openStamp = new IntervalTimeStamp(interval[0], 'open')
-        const closeStamp = new IntervalTimeStamp(interval[1], 'close')
+        const isRemoval = false
+        this.addOrRemoveInterval(interval, isRemoval)
+    }
+
+    public removeInterval(interval: Interval) {
+        const isRemoval = true
+        this.addOrRemoveInterval(interval, isRemoval)
+    }
+
+    private addOrRemoveInterval(interval: Interval, isRemoval=false) {
+        let openStamp = new IntervalTimeStamp(interval[0], 'open')
+        let closeStamp = new IntervalTimeStamp(interval[1], 'close')
+        if (isRemoval) {
+            const openStamp = new IntervalTimeStamp(interval[0], 'close')
+            const closeStamp = new IntervalTimeStamp(interval[1], 'open')
+        }
         this.timeStampArray.push(openStamp)
         this.timeStampArray.push(closeStamp)
 

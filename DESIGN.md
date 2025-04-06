@@ -73,4 +73,7 @@ How about if instead I just merge all the extremes of the intervals, `time stamp
 The last test with a very large number of intervals
 does not scale very well. 20000 intervals takes about 45 seconds to compute.
 
-TODO: Next, replace the call to sort by an insert
+TODO: Next, replace the call to sort by an insert of the time stamp in the right place
+
+### Remove interval
+With this logic of openIntervals counter, for the interval removals, I only need to invert the order of the action of the time stamps, that is close first and open after.
