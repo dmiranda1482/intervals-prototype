@@ -39,3 +39,21 @@ distance(a,b) + distance(c,d) < distance (x,y)
 3) return the appropriate result depending on whether I am in situation 1) or 2).
 
 
+### algorithm for merging an interval into a `disjoint array of intrevals`
+
+If I loop over the array of intervals and use the algorithm to merge two intervals, I might end up with a new array where some of the intervals overlap. In that case I would have to merge every two pairs of the array, until no overlaps occour. That would results in an algorithm with cubic complexity O(n^2), that is not too bad for starting. There will be ways of reducing the complexity. But at this stage I just want to have something working. And this would also allow me to develop more test cases for later use.
+
+##### the naive inefficient algorithm would be:
+
+1) push the new interval into the array
+2) repeat until no overlaps occur
+    overlapingInThisIteration = "false"
+    newIntervalArray = []
+    for i=0 to intervalArray.lengh()
+        for j=i+1 to intervalArray.lengh()
+            mergeArray = mergeTwoIntervals(intervalArray[i], intervalArray[j])
+            overlapingInThisIteration = mergeArray.len() == 1 // there was an overlap
+            newIntervalArray.push(overlapingInThisIteration)
+    intervalArray = newIntervalArray
+
+
