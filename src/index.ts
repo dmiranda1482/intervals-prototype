@@ -23,26 +23,26 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
     return resultArray
 }
 
-function iterateToResolveInternalMerges(intrevalArray: Interval[]): boolean {
-    let newIntrevalArray: Interval[] = []
+function iterateToResolveInternalMerges(intervalArray: Interval[]): boolean {
+    let newintervalArray: Interval[] = []
     let overlapingInThisIteration = false
-    for(let i=0; i< intrevalArray.length-1; i++) {
-        for(let j=i+1; i< intrevalArray.length; j++) {
-            const mergeArray = mergeTwoIntervals(intrevalArray[i], intrevalArray[j])
+    for(let i=0; i< intervalArray.length-1; i++) {
+        for(let j=i+1; i< intervalArray.length; j++) {
+            const mergeArray = mergeTwoIntervals(intervalArray[i], intervalArray[j])
             overlapingInThisIteration = overlapingInThisIteration || (mergeArray.length < 2)
-            newIntrevalArray.concat(mergeArray)
+            newintervalArray.concat(mergeArray)
         }
     }
-    intrevalArray = newIntrevalArray
+    intervalArray = newintervalArray
     return overlapingInThisIteration
 }
 
- function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: Interval): Interval[] {
-    const maxIteration = intrevalArray.length
+ function mergeIntrevalIntoArray(intervalArray: Interval[], newInterval: Interval): Interval[] {
+    const maxIteration = intervalArray.length
     let overlapingInThisIteration = false
     for(let iteration=0; iteration <= maxIteration; iteration++) {
 
-        overlapingInThisIteration = iterateToResolveInternalMerges(intrevalArray)
+        overlapingInThisIteration = iterateToResolveInternalMerges(intervalArray)
 
         if (!overlapingInThisIteration) {
             break; // exits the loop
