@@ -23,5 +23,31 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
     return resultArray
 }
 
+function tryInternalMerges(intrevalArray: Interval[], newIntrevalArray: Interval[]): boolean {
+    newIntrevalArray = []
+    let overlapingInThisIteration = false
+    for(let i=0; i< intrevalArray.length-1; i++) {
+        for(let j=i+1; i< intrevalArray.length; j++) {
+            const mergeArray = mergeTwoIntervals(intrevalArray[i], intrevalArray[j])
+            overlapingInThisIteration = overlapingInThisIteration || (mergeArray.length < 2)
+            newIntrevalArray
+        }
+    }
+    return false
+}
+
+export function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: Interval): Interval[] {
+    const maxIteration = intrevalArray.length
+    let overlapingInThisIteration = false
+    for(let iteration=0; iteration <= maxIteration; iteration++) {
+        overlapingInThisIteration = false
+
+
+        if (!overlapingInThisIteration) {
+            break; // exits the loop
+        }
+    }
+    return []
+}
 
 console.log(`Hello Tokenovate!`);
