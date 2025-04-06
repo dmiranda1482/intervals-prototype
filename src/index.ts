@@ -23,7 +23,7 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
     return resultArray
 }
 
-function tryInternalMerges(intrevalArray: Interval[]): boolean {
+function iterateToResolveInternalMerges(intrevalArray: Interval[]): boolean {
     let newIntrevalArray: Interval[] = []
     let overlapingInThisIteration = false
     for(let i=0; i< intrevalArray.length-1; i++) {
@@ -42,8 +42,8 @@ export function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: I
     let overlapingInThisIteration = false
     for(let iteration=0; iteration <= maxIteration; iteration++) {
 
-        overlapingInThisIteration = tryInternalMerges(intrevalArray)
-        
+        overlapingInThisIteration = iterateToResolveInternalMerges(intrevalArray)
+
         if (!overlapingInThisIteration) {
             break; // exits the loop
         }
