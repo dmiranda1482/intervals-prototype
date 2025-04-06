@@ -67,7 +67,7 @@ function iterateToResolveInternalMerges(intervalArray: Interval[]): Interval[] {
     return intervalArray
 }
 
-export class IntervalManager {
+export class IntervalManagerOld {
     private intervalArray: Interval[] = []
     public addInterval(interval: Interval) {
         if (this.intervalArray.length > 0) {

@@ -1,4 +1,6 @@
-import { IntervalManager } from "..";
+import { Interval } from "..";
+import { IntervalManager } from "../intervalManager";
+
 
 test("should return [[1,7]]", () => {
     // Arrange
@@ -14,4 +16,86 @@ test("should return [[1,7]]", () => {
   
     // Assert
     expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+  test("should return [[0,20]]", () => {
+    // Arrange
+    const expectedArray = [[0, 20]];
+    const manager = new IntervalManager()
+    
+    // Act
+    const intervals: Interval[] = [[0,10], [10,20]]
+    intervals.forEach((x) => manager.addInterval(x))
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+  test("should return [[0,50]]", () => {
+    // Arrange
+    const expectedArray = [[0, 50]];
+    const manager = new IntervalManager()
+    
+    // Act
+    const intervals: Interval[] = [0, 3, 1, 2, 4].map((x) => [ x*10, (x+1)*10])
+    intervals.forEach((x) => manager.addInterval(x))
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+  test("should return [[0,8], [10,11]]", () => {
+    // Arrange
+    const manager = new IntervalManager()
+    const expectedArray = [[0,8], [10,11]];
+    
+    // Act
+    const intervals: Interval[] = [[0,1],[3,4], [7,8], [10,11], [0,7]]
+    intervals.forEach((x) => manager.addInterval(x))
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+
+  test("should return [[0,50]] adds the intervals two times", () => {
+    // Arrange
+    const expectedArray = [[0, 50]];
+    const manager = new IntervalManager()
+    
+    // Act
+    const intervals: Interval[] = [0, 3, 1, 2, 4].map((x) => [ x*10, (x+1)*10])
+    intervals.forEach((x) => manager.addInterval(x))
+    intervals.forEach((x) => manager.addInterval(x))
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
+
+  test("should return an array with the correct size (VeryLargeNumber)", () => {
+    // Arrange
+    const VeryLargeNumber = 20000
+    const manager = new IntervalManager()
+    
+    // Act
+    for(let i=1; i<=VeryLargeNumber; i++) {
+        manager.addInterval([i, i+0.5])
+    }
+    
+    const obtainedSize = manager.getIntervals().length;
+  
+    // Assert
+    expect(obtainedSize).toEqual(VeryLargeNumber);
   });

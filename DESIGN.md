@@ -60,3 +60,15 @@ Note2: I can check if overlaps occoured in a certain iteration by comparing the 
 
 ** It would not work, because when combining pairs of intervals one might get, a growing number of intervals **
 
+
+### An improved algorithm
+
+Idea: Keep the array with the intrevals allways sorted after each operation.
+
+Then when an new interval is inserted we loop over the extremes of the intrevals and the new one, in order... while doing that, we construct the merged array of intrevals by using a state variable `open intervals`. The state variable `open intervals` would keep track of how many intervals are `open` as we step into an extreme value.
+
+How about if instead I just merge all the extremes of the intervals, `time stamps`, with label is it is a open or a close. Then when inserting a new interval I only have to loop trough. And then somehow I merge time stamps that correspond to the same instant to eliminate the case where intervals touch eachother.
+
+### Review the algotithm
+The last test with a very large number of intervals
+does not scale very well. 20000 intervals takes about 45 seconds to compute.
