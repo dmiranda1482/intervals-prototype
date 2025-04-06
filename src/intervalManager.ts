@@ -18,8 +18,22 @@ export class IntervalManager {
 
 
     public addInterval(interval: Interval) {
-        const openStamp = new IntervalTimeStamp(interval[0], 'open')
-        const closeStamp = new IntervalTimeStamp(interval[1], 'close')
+        const isRemoval = false
+        this.addOrRemoveInterval(interval, isRemoval)
+    }
+
+    public removeInterval(interval: Interval) {
+        const isRemoval = true
+        this.addOrRemoveInterval(interval, isRemoval)
+    }
+
+    private addOrRemoveInterval(interval: Interval, isRemoval=false) {
+        let openStamp = new IntervalTimeStamp(interval[0], 'open')
+        let closeStamp = new IntervalTimeStamp(interval[1], 'close')
+        if (isRemoval) {
+            openStamp = new IntervalTimeStamp(interval[0], 'close')
+            closeStamp = new IntervalTimeStamp(interval[1], 'open')
+        }
         this.timeStampArray.push(openStamp)
         this.timeStampArray.push(closeStamp)
 
@@ -54,12 +68,24 @@ export class IntervalManager {
         this.timeStampArray = newTimeStampArray
 
         // recompute intervalArray (separate from prunning for modularity)
-        this.intervalArray = []
+        this.intervalArray = new Array(this.timeStampArray.length/2)
+        let index = 0
         for(const stamp of this.timeStampArray) {
             if (stamp.action === 'open') {
-                this.intervalArray.push([stamp.time, 0])
+                this.intervalArray[index] = [0, 0]
+                this.intervalArray[index][0] = stamp.time
             } else {
-                this.intervalArray[this.intervalArray.length-1][1] = stamp.time
+                this.intervalArray[index][1] = stamp.time
+                index++;
+            }
+        }
+
+        // remove zero lenght intervals
+        const copyIntervalArray = this.intervalArray
+        this.intervalArray = []
+        for(const interval of copyIntervalArray) {
+            if (interval[1] !== interval[0]) {
+                this.intervalArray = [...this.intervalArray, interval]
             }
         }
     }
