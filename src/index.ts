@@ -23,41 +23,53 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
     return resultArray
 }
 
-function iterateToResolveInternalMerges(intervalArray: Interval[]): boolean {
-    let newintervalArray: Interval[] = []
-    let overlapingInThisIteration = false
+function iterateToResolveInternalMerges(intervalArray: Interval[]): Interval[] {
+    console.log(`####--- intervalArray: ${JSON.stringify(intervalArray)}`)
+    if (intervalArray.length < 2) {
+        return intervalArray
+    }
+    let newIntervalArray: Interval[] = []
     for(let i=0; i< intervalArray.length-1; i++) {
-        for(let j=i+1; i< intervalArray.length; j++) {
+        for(let j=i+1; j< intervalArray.length; j++) {
+            console.log(`####*** for loops [i,j]: ${JSON.stringify([i, j])}`)
+            console.log(`####***** intervalArray[${i}]: ${JSON.stringify(intervalArray[i])}`)
+            console.log(`####***** intervalArray[${j}]: ${JSON.stringify(intervalArray[j])}`)
             const mergeArray = mergeTwoIntervals(intervalArray[i], intervalArray[j])
-            overlapingInThisIteration = overlapingInThisIteration || (mergeArray.length < 2)
-            newintervalArray.concat(mergeArray)
+            console.log(`####***** mergeArray: ${JSON.stringify(mergeArray)}`)
+            newIntervalArray = [...newIntervalArray, ...mergeArray]
+            console.log(`####***** newIntervalArray: ${JSON.stringify(newIntervalArray)}`)
         }
     }
-    intervalArray = newintervalArray
-    return overlapingInThisIteration
+    console.log(`####*** newIntervalArray: ${JSON.stringify(newIntervalArray)}`)
+    return newIntervalArray
 }
 
- function mergeIntrevalIntoArray(intervalArray: Interval[], newInterval: Interval): Interval[] {
+ function mergeIntrevalIntoArray(inputIntervalArray: Interval[], newInterval: Interval): Interval[] {
+    let intervalArray = [...inputIntervalArray, newInterval]
+    console.log(`#### 1 intervalArray: ${JSON.stringify(intervalArray)}`)
     const maxIteration = intervalArray.length
     let overlapingInThisIteration = false
     for(let iteration=0; iteration <= maxIteration; iteration++) {
-
-        overlapingInThisIteration = iterateToResolveInternalMerges(intervalArray)
+        
+        const newIntervalArray = iterateToResolveInternalMerges(intervalArray)
+        const overlapingInThisIteration = newIntervalArray.length !== intervalArray.length
+        intervalArray = newIntervalArray
+        console.log(`#### 2 intervalArray merged: ${JSON.stringify(intervalArray)}`)
 
         if (!overlapingInThisIteration) {
             break; // exits the loop
         }
     }
-    return []
+    return intervalArray
 }
 
 export class IntervalManager {
     private intervalArray: Interval[] = []
     public addInterval(interval: Interval) {
         if (this.intervalArray.length > 0) {
-            mergeIntrevalIntoArray(this.intervalArray, interval)
+            this.intervalArray = mergeIntrevalIntoArray(this.intervalArray, interval)
         } else {
-            this.intervalArray.push(interval)
+            this.intervalArray = [interval]
         }
     }
     public getIntervals() {
