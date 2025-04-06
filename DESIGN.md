@@ -60,3 +60,11 @@ Note2: I can check if overlaps occoured in a certain iteration by comparing the 
 
 ** It would not work, because when combining pairs of intervals one might get, a growing number of intervals **
 
+
+### An improved algorithm
+
+Idea: Keep the array with the intrevals allways sorted after each operation.
+
+Then when an new interval is inserted we loop over the extremes of the intrevals and the new one, in order... while doing that, we construct the merged array of intrevals by using a state variable `open intervals`. The state variable `open intervals` would keep track of how many intervals are `open` as we step into an extreme value.
+
+Formalize a first idea of the algorithm:
