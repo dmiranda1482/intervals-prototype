@@ -99,3 +99,25 @@ test("should return [[1,7]]", () => {
     // Assert
     expect(obtainedSize).toEqual(VeryLargeNumber);
   });
+
+
+
+
+
+
+  test("should return [[0,40]]", () => {
+    // Arrange
+    const expectedArray = [[0, 40]];
+    const manager = new IntervalManager()
+    
+    // Act
+    const intervals: Interval[] = [[0,100], [40, 100]]
+    manager.addInterval(intervals[0])
+    manager.removeInterval(intervals[1])
+
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
