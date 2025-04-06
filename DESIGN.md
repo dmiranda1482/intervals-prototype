@@ -41,7 +41,7 @@ distance(a,b) + distance(c,d) < distance (x,y)
 
 ### algorithm for merging an interval into a `disjoint array of intrevals`
 
-If I loop over the array of intervals and use the algorithm to merge two intervals, I might end up with a new array where some of the intervals overlap. In that case I would have to merge every two pairs of the array, until no overlaps occour. That would results in an algorithm with cubic complexity O(n^2), that is not too bad for starting. There will be ways of reducing the complexity. But at this stage I just want to have something working. And this would also allow me to develop more test cases for later use.
+If I loop over the array of intervals and use the algorithm to merge two intervals, I might end up with a new array where some of the intervals overlap. In that case I would have to merge every two pairs of the array, until no overlaps occour. That would results in an algorithm with cubic complexity O(n^3), that is not too bad for starting. There will be ways of reducing the complexity. But at this stage I just want to have something working. And this would also allow me to develop more test cases for later use.
 
 ##### the naive inefficient algorithm would be:
 
