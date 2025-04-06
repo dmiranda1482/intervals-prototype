@@ -44,3 +44,18 @@ test("merge [1,2] with [0,10] to equal [[0,10]]", () => {
   const expectedArray = [[0, 10]];
   expect(obtainedArray).toStrictEqual(expectedArray);
 });
+
+
+test("merge [1,2] with [2,3] to equal [[1,3]]", () => {
+    // Arrange
+    const interval1: Interval = [1, 2];
+    const interval2: Interval = [2, 3];
+    const expectedArray = [[1, 3]];
+  
+    // Act
+    const obtainedArray = mergeTwoIntervals(interval1, interval2);
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+  });
