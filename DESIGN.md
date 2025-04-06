@@ -56,4 +56,4 @@ If I loop over the array of intervals and use the algorithm to merge two interva
             newIntervalArray.push(overlapingInThisIteration)
     intervalArray = newIntervalArray
 
-
+Note: I can try to put a flag on the Itervals, to track the ones that change and combine only those, but it would only be slightly better. There is for sure a more efficient way of doing this, so at this point I am not even loose time doing that. 
