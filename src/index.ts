@@ -54,7 +54,11 @@ function iterateToResolveInternalMerges(intrevalArray: Interval[]): boolean {
 export class IntervalManager {
     private intervalArray: Interval[] = []
     public addInterval(interval: Interval) {
-        mergeIntrevalIntoArray(this.intervalArray, interval)
+        if (this.intervalArray.length > 0) {
+            mergeIntrevalIntoArray(this.intervalArray, interval)
+        } else {
+            this.intervalArray.push(interval)
+        }
     }
     public getIntervals() {
         return this.intervalArray
