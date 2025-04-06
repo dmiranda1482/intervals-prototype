@@ -51,6 +51,7 @@ export class IntervalManager {
                 }
             }
         }
+        this.timeStampArray = newTimeStampArray
 
         // recompute intervalArray (separate from prunning for modularity)
         this.intervalArray = []
@@ -64,6 +65,7 @@ export class IntervalManager {
     }
 
     public getIntervals() {
+        console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
         return this.intervalArray
     }
 }

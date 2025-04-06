@@ -1,4 +1,5 @@
-import { IntervalManager } from "..";
+import { IntervalManager } from "../intervalManager";
+
 
 test("should return [[1,7]]", () => {
     // Arrange
