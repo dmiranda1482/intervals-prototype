@@ -1,7 +1,3 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
-
 export type Interval = [number, number]
 
 export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Interval[] {
@@ -28,4 +24,4 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
 }
 
 
-console.log(`Hello Tokenovate 1 + 2 = ${add(1, 2)}`);
+console.log(`Hello Tokenovate!`);
