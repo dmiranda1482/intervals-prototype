@@ -72,3 +72,5 @@ How about if instead I just merge all the extremes of the intervals, `time stamp
 ### Review the algotithm
 The last test with a very large number of intervals
 does not scale very well. 20000 intervals takes about 45 seconds to compute.
+
+TODO: Next, replace the call to sort by an insert

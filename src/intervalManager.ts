@@ -54,12 +54,15 @@ export class IntervalManager {
         this.timeStampArray = newTimeStampArray
 
         // recompute intervalArray (separate from prunning for modularity)
-        this.intervalArray = []
+        this.intervalArray = new Array(this.timeStampArray.length/2)
+        let index = 0
         for(const stamp of this.timeStampArray) {
             if (stamp.action === 'open') {
-                this.intervalArray.push([stamp.time, 0])
+                this.intervalArray[index] = [0, 0]
+                this.intervalArray[index][0] = stamp.time
             } else {
-                this.intervalArray[this.intervalArray.length-1][1] = stamp.time
+                this.intervalArray[index][1] = stamp.time
+                index++;
             }
         }
     }
