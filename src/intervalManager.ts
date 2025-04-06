@@ -29,7 +29,7 @@ export class IntervalManager {
             let delta = a.time - b.time
             if (delta == 0) {
                 // priorize open first
-                delta = a.action === 'open' ? 1 : -1
+                delta = a.action === 'open' ? -1 : 1
             }
             return delta
         }
