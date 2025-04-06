@@ -35,9 +35,32 @@ export class IntervalManager {
         }
         )
 
-        // prune stamps
-        
-        // recompute
+        // prune time stamps
+        let openIntervals = 0
+        const newTimeStampArray: IntervalTimeStamp[] = []
+        for(const stamp of this.timeStampArray) {
+            if (stamp.action === 'open') {
+                openIntervals++
+                if (openIntervals === 1) {
+                    newTimeStampArray.push(stamp) // open a new interval, otherwise the interval is already open and dont do anything
+                }
+            } else if (stamp.action === 'close') {
+                openIntervals--
+                if (openIntervals === 0) {
+                    newTimeStampArray.push(stamp) // close the interval, otherwise the interval is stil open due to another interval and dont do anything
+                }
+            }
+        }
+
+        // recompute intervalArray (separate from prunning for modularity)
+        this.intervalArray = []
+        for(const stamp of this.timeStampArray) {
+            if (stamp.action === 'open') {
+                this.intervalArray.push([stamp.time, 0])
+            } else {
+                this.intervalArray[this.intervalArray.length-1][1] = stamp.time
+            }
+        }
     }
 
     public getIntervals() {
