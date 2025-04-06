@@ -57,3 +57,5 @@ If I loop over the array of intervals and use the algorithm to merge two interva
     intervalArray = newIntervalArray
 
 Note: I can try to put a flag on the Itervals, to track the ones that change and combine only those, but it would only be slightly better. There is for sure a more efficient way of doing this, so at this point I am not even loose time doing that. 
+
+Note2: actually I can check if overlaps occoured in a certain iteration by comparing the lenght of the arrays before and after the iteration, but because I might implement the operation for subtraction later, I will keep the flag as it might be usefull.
