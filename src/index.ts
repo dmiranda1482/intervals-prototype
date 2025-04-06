@@ -13,7 +13,7 @@ export function mergeTwoIntervals(interval1: Interval, interval2: Interval): Int
 
     // verify that the given intervals overlap
     const getLenght = (interval: Interval) => (interval[1] - interval[0])
-    const isOverlappingMerge = getLenght(trialSingleMergedInterval) < (getLenght(interval1) + getLenght(interval2))
+    const isOverlappingMerge = getLenght(trialSingleMergedInterval) <= (getLenght(interval1) + getLenght(interval2))
 
     // compute appropriate result
     let resultArray = [ trialSingleMergedInterval ]
