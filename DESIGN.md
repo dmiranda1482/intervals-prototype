@@ -21,5 +21,19 @@ So for instance the intreval [1, 3] would allways contain 1, 3 and everything in
 
 This second algorithm will probably be extremely ineficient, and will not scale well when the problem size increases, that is the, amont of intervals increases. However, I might learn something from it and it will allow me to write some tests. To use late.
 
+### algorithm for merging two intervals
+
+When merging two intervals, three cases migh ocour:
+1) the two interval do not overlap, not even at the extremes so when merging we get the same intervals
+2) One of the intervals ovelaps the other completely, so the result is the wider interval
+3) The intervals overlap but only partially, this inclues the case where thet touch at one extreme, then in that case merging [a,b] with [c, d] would result in a single interval [min(a,c), max(b,d)]
+
+However, the case 2) merging partially overlaping intervals [a, b] with [c, d] will result in an interval of the type [min(a,c), max(b,d)] as in case 3).
+
+So maybe I can jus:
+1) compute a `trial single merged interval` with [min(a,c), max(b,d)] = [x, y], and
+2) verify if I am in case 1, by checking that if the distance betwen extremes of the resulting intreval exceeded the sum of distances between extremes the two given intervals
+distance(a,b) + distance(c,d) < distance (x,y)
+3) return the appropriate result depending on whether I am in situation 1) or 2).
 
 
