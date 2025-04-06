@@ -31,8 +31,8 @@ export class IntervalManager {
         let openStamp = new IntervalTimeStamp(interval[0], 'open')
         let closeStamp = new IntervalTimeStamp(interval[1], 'close')
         if (isRemoval) {
-            const openStamp = new IntervalTimeStamp(interval[0], 'close')
-            const closeStamp = new IntervalTimeStamp(interval[1], 'open')
+            openStamp = new IntervalTimeStamp(interval[0], 'close')
+            closeStamp = new IntervalTimeStamp(interval[1], 'open')
         }
         this.timeStampArray.push(openStamp)
         this.timeStampArray.push(closeStamp)
@@ -49,6 +49,8 @@ export class IntervalManager {
         }
         )
 
+        console.log(`######----- time stamps before prunning: ${JSON.stringify(this.timeStampArray,null, 2)}`)
+
         // prune time stamps
         let openIntervals = 0
         const newTimeStampArray: IntervalTimeStamp[] = []
@@ -62,6 +64,13 @@ export class IntervalManager {
                 openIntervals--
                 if (openIntervals === 0) {
                     newTimeStampArray.push(stamp) // close the interval, otherwise the interval is stil open due to another interval and dont do anything
+                    
+                    // if the last two inserted stamps to open and close are have the same time, remove them
+                    const stamp0 = newTimeStampArray[newTimeStampArray.length-2]
+                    if (stamp0.time === stamp.time && stamp0.action==='open' && stamp.action==='close') {
+                        newTimeStampArray.pop()
+                        newTimeStampArray.pop()
+                    }
                 }
             }
         }

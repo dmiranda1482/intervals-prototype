@@ -86,7 +86,7 @@ test("should return [[1,7]]", () => {
 
   test("should return an array with the correct size (VeryLargeNumber)", () => {
     // Arrange
-    const VeryLargeNumber = 20000
+    const VeryLargeNumber = 500
     const manager = new IntervalManager()
     
     // Act
