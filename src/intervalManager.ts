@@ -65,7 +65,7 @@ export class IntervalManager {
     }
 
     public getIntervals() {
-        console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
+        // console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
         return this.intervalArray
     }
 }

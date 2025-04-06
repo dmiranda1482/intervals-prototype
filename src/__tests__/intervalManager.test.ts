@@ -84,9 +84,9 @@ test("should return [[1,7]]", () => {
     expect(obtainedArray).toStrictEqual(expectedArray);
   });
 
-  test("should return an array of size VeryLargeNumber", () => {
+  test("should return an array with the correct size (VeryLargeNumber)", () => {
     // Arrange
-    const VeryLargeNumber = 1000
+    const VeryLargeNumber = 20000
     const manager = new IntervalManager()
     
     // Act
@@ -95,7 +95,6 @@ test("should return [[1,7]]", () => {
     }
     
     const obtainedSize = manager.getIntervals().length;
-    //console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
   
     // Assert
     expect(obtainedSize).toEqual(VeryLargeNumber);
