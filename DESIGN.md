@@ -13,6 +13,8 @@ I am also going to assume that the intrevals correspond to mathematical sets of 
 
 So for instance the intreval [1, 3] would allways contain 1, 3 and everything in between.
 
+I am also not going to bother to sanitize any data at this point. I ssume that the given intrevals always contain exactly two sorted numbers, so that the first is <= that the second.
+
 ## a very simple algorithm
 
 1. I am going to create a very simple algorithm with a routine to merge two intervals into a `disjoint array of intrevals` that is intervals that correspond to disjoint sets, that is an array of intrevals that does not overlap.
