@@ -1,0 +1,21 @@
+{
+  "name": "intervals-prototype",
+  "version": "1.0.0",
+  "description": "Coding exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmiranda1482/intervals-prototype.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dmiranda1482/intervals-prototype/issues"
+  },
+  "homepage": "https://github.com/dmiranda1482/intervals-prototype#readme"
+}
