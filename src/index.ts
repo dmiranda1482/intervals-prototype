@@ -37,7 +37,7 @@ function iterateToResolveInternalMerges(intrevalArray: Interval[]): boolean {
     return overlapingInThisIteration
 }
 
-export function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: Interval): Interval[] {
+ function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: Interval): Interval[] {
     const maxIteration = intrevalArray.length
     let overlapingInThisIteration = false
     for(let iteration=0; iteration <= maxIteration; iteration++) {
@@ -49,6 +49,16 @@ export function mergeIntrevalIntoArray(intrevalArray: Interval[], newInterval: I
         }
     }
     return []
+}
+
+export class IntervalManager {
+    private intervalArray: Interval[] = []
+    public addInterval(interval: Interval) {
+        mergeIntrevalIntoArray(this.intervalArray, interval)
+    }
+    public getIntervals() {
+        return this.intervalArray
+    }
 }
 
 console.log(`Hello Tokenovate!`);
