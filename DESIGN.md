@@ -77,3 +77,7 @@ TODO: Next, replace the call to sort by an insert of the time stamp in the right
 
 ### Remove interval
 With this logic of openIntervals counter, for the interval removals, I only need to invert the order of the action of the time stamps, that is close first and open after.
+
+### Quick Optimization
+Besides replacing the sort algorithm by an insert when adding a new interval, there is something quicker that I can do.
+If I only sort the the `time stamps` just before getting the Intervals getIntervals(), then we don't need calling for the sort so many times (I am assuming that getIntervals() is called infrequently). 
