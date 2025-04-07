@@ -10,7 +10,6 @@ test("should return [[1,7]]", () => {
   manager.addInterval([5, 7]);
   manager.addInterval([2, 6]);
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -29,7 +28,6 @@ test("should return [[0,20]]", () => {
   intervals.forEach((x) => manager.addInterval(x));
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -48,7 +46,6 @@ test("should return [[0,50]]", () => {
   intervals.forEach((x) => manager.addInterval(x));
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -73,7 +70,6 @@ test("should return [[0,8], [10,11]]", () => {
   intervals.forEach((x) => manager.addInterval(x));
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -93,7 +89,6 @@ test("should return [[0,50]] adds the intervals two times", () => {
   intervals.forEach((x) => manager.addInterval(x));
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -129,7 +124,6 @@ test("should return [[0,40]]", () => {
   manager.removeInterval(intervals[1]);
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -151,7 +145,6 @@ test("should return [[20,40]]", () => {
   manager.removeInterval(intervals[2]);
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -173,7 +166,6 @@ test("should return [[20,40]]", () => {
   manager.removeInterval(intervals[2]);
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
@@ -195,7 +187,6 @@ test("should return []", () => {
   manager.removeInterval(intervals[2]);
 
   const obtainedArray = manager.getIntervals();
-  console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
 
   // Assert
   expect(obtainedArray).toStrictEqual(expectedArray);
