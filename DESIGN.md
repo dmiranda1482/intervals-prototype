@@ -69,7 +69,7 @@ Then when an new interval is inserted we loop over the extremes of the intrevals
 
 How about if instead I just merge all the extremes of the intervals, `time stamps`, with label is it is a open or a close. Then when inserting a new interval I only have to loop trough. And then somehow I merge time stamps that correspond to the same instant to eliminate the case where intervals touch eachother.
 
-### Review the algotithm
+### Review the improved algorithm
 The last test with a very large number of intervals
 does not scale very well. 20000 intervals takes about 45 seconds to compute.
 
