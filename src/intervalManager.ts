@@ -41,7 +41,7 @@ export class IntervalManager {
         this.timeStampArray.sort((a, b) => {
             let delta = a.time - b.time
             if (delta == 0) {
-                // priorize open first
+                // prioritize open first
                 delta = a.action === 'open' ? -1 : 1
             }
             return delta
@@ -66,7 +66,7 @@ export class IntervalManager {
         }
         this.timeStampArray = newTimeStampArray
 
-        // recompute intervalArray (separate from prunning for modularity)
+        // recompute intervalArray (separate from pruning for modularity)
         this.intervalArray = new Array(this.timeStampArray.length/2)
         let index = 0
         for(const stamp of this.timeStampArray) {
@@ -79,7 +79,7 @@ export class IntervalManager {
             }
         }
 
-        // remove zero lenght intervals
+        // remove zero length intervals
         const copyIntervalArray = this.intervalArray
         this.intervalArray = []
         for(const interval of copyIntervalArray) {
