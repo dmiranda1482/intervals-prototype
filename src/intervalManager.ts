@@ -73,9 +73,9 @@ export class IntervalManager {
     }
 
     // remove zero length intervals
-    const copyIntervalArray = this.intervalArray;
+    const copyOfIntervalArray = this.intervalArray;
     this.intervalArray = [];
-    for (const interval of copyIntervalArray) {
+    for (const interval of copyOfIntervalArray) {
       if (interval[1] !== interval[0]) {
         this.intervalArray = [...this.intervalArray, interval];
       }
