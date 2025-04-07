@@ -32,3 +32,6 @@ To implement the algorithm, I use the concept
 Avoid doing the step 2 too often as it's computationally costly
 
 ### Future improvements
+* Optimize the allocations of arrays, with pre-allocation and avoid many copies
+* Use a cache, to avoid step 2, if nothing is added or removed
+* Add doxygen documentation
