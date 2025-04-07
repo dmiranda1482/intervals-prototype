@@ -101,7 +101,7 @@ test("should return [[0,50]] adds the intervals two times", () => {
 
 test("should return an array with the correct size (VeryLargeNumber)", () => {
   // Arrange
-  const VeryLargeNumber = 500;
+  const VeryLargeNumber = 10 * 1000;
   const manager = new IntervalManager();
 
   // Act
