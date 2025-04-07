@@ -34,7 +34,10 @@ export class IntervalManager {
     }
     this.timeStampArray.push(openStamp);
     this.timeStampArray.push(closeStamp);
+    this.computeIntervals()
+   }
 
+  private computeIntervals() {
     // sort sort by time, if the times are equal, then open first
     // this avoid contiguous intervals in the next step
     this.timeStampArray.sort((a, b) => {
