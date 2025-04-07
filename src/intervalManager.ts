@@ -48,12 +48,12 @@ export class IntervalManager {
       if (stamp.action === "open") {
         openIntervals++;
         if (openIntervals === 1) {
-          newTimeStampArray.push(stamp); // open a new interval, otherwise the interval is already open and dont do anything
+          newTimeStampArray.push(stamp); // open a new interval, otherwise the interval is already open and don't do anything
         }
       } else if (stamp.action === "close") {
         openIntervals--;
         if (openIntervals === 0) {
-          newTimeStampArray.push(stamp); // close the interval, otherwise the interval is stil open due to another interval and dont do anything
+          newTimeStampArray.push(stamp); // close the interval, otherwise the interval is still open due to another interval and don't do anything
         }
       }
     }
