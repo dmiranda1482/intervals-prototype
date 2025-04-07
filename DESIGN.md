@@ -3,23 +3,23 @@
 ## starting point/ initial assumptions
 Ok, I think I will start by brainstorming some ideas and try to write some code as fast as I can, to fail fast.
 
-From what I read, the context of the software (bussines logic) is not given, except that the intervals correspond to time, that is quite abstract anyway.
-There is no garantee that the intrevals of time are added in cronological order, what is the smallest possible difference between two time instants, precision and things like that.
+From what I read, the context of the software (business logic) is not given, except that the intervals correspond to time, that is quite abstract anyway.
+There is no guarantee that the intervals of time are added in cronological order, what is the smallest possible difference between two time instants, precision and things like that.
 It is also not know how many intervals will be processed 10, or 10 million, and if an algorithm that scales when the volume of data increses is important. Whether assyncronous merges would be desirable, etc.
 
 Therefore, for now, I am going to ignore all that!!!!
 
-I am also going to assume that the intrevals correspond to mathematical sets of real numbers and so, when merging intrevals I will get the smallest possible array of intrevals, that would correspond to the mathematical union of those intrevals. And by the way the extremes of the intrevals would allways be part of the sets (closed intrevals).
+I am also going to assume that the intervals correspond to mathematical sets of real numbers and so, when merging intervals I will get the smallest possible array of intervals, that would correspond to the mathematical union of those intervals. And by the way the extremes of the intervals would allways be part of the sets (closed intervals).
 
 So for instance the intreval [1, 3] would allways contain 1, 3 and everything in between.
 
-I am also not going to bother to sanitize any data at this point. I ssume that the given intrevals always contain exactly two sorted numbers, so that the first is <= that the second.
+I am also not going to bother to sanitize any data at this point. I ssume that the given intervals always contain exactly two sorted numbers, so that the first is <= that the second.
 
 ## a very simple algorithm
 
-1. I am going to create a very simple algorithm with a routine to merge two intervals into a `disjoint array of intrevals` that is intervals that correspond to disjoint sets, that is an array of intrevals that does not overlap.
+1. I am going to create a very simple algorithm with a routine to merge two intervals into a `disjoint array of intervals` that is intervals that correspond to disjoint sets, that is an array of intervals that does not overlap.
 
-2. then I will use that routine to build another, that meges an interval with the `disjoint array of intrevals` and outputs the resulting `disjoint array of intrevals`.
+2. then I will use that routine to build another, that meges an interval with the `disjoint array of intervals` and outputs the resulting `disjoint array of intervals`.
 
 This second algorithm will probably be extremely ineficient, and will not scale well when the problem size increases, that is the, amont of intervals increases. However, I might learn something from it and it will allow me to write some tests. To use late.
 
@@ -39,7 +39,7 @@ distance(a,b) + distance(c,d) < distance (x,y)
 3) return the appropriate result depending on whether I am in situation 1) or 2).
 
 
-### algorithm for merging an interval into a `disjoint array of intrevals`
+### algorithm for merging an interval into a `disjoint array of intervals`
 
 If I loop over the array of intervals and use the algorithm to merge two intervals, I might end up with a new array where some of the intervals overlap. In that case I would have to merge every two pairs of the array, until no overlaps occour. That would results in an algorithm with cubic complexity O(n^3), that is not too bad for starting. There will be ways of reducing the complexity. But at this stage I just want to have something working. And this would also allow me to develop more test cases for later use.
 
@@ -63,9 +63,9 @@ Note2: I can check if overlaps occoured in a certain iteration by comparing the 
 
 ### An improved algorithm
 
-Idea: Keep the array with the intrevals allways sorted after each operation.
+Idea: Keep the array with the intervals allways sorted after each operation.
 
-Then when an new interval is inserted we loop over the extremes of the intrevals and the new one, in order... while doing that, we construct the merged array of intrevals by using a state variable `open intervals`. The state variable `open intervals` would keep track of how many intervals are `open` as we step into an extreme value.
+Then when an new interval is inserted we loop over the extremes of the intervals and the new one, in order... while doing that, we construct the merged array of intervals by using a state variable `open intervals`. The state variable `open intervals` would keep track of how many intervals are `open` as we step into an extreme value.
 
 How about if instead I just merge all the extremes of the intervals, `time stamps`, with label is it is a open or a close. Then when inserting a new interval I only have to loop trough. And then somehow I merge time stamps that correspond to the same instant to eliminate the case where intervals touch eachother.
 
