@@ -29,9 +29,14 @@ export class IntervalManager {
     this.timeStampArray.push(closeStamp);
   }
 
+  public getIntervals() {
+    this.computeIntervals();
+    return this.intervalArray;
+  }
+
   private computeIntervals() {
     // sort sort by time, if the times are equal, then open first
-    // this avoid contiguous intervals in the next step
+    // this avoids contiguous intervals in the next step
     this.timeStampArray.sort((a, b) => {
       let delta = a.time - b.time;
       if (delta == 0) {
@@ -47,13 +52,15 @@ export class IntervalManager {
     for (const stamp of this.timeStampArray) {
       if (stamp.action === "open") {
         openIntervals++;
+        // open a new interval, otherwise the interval is already open and don't do anything
         if (openIntervals === 1) {
-          newTimeStampArray.push(stamp); // open a new interval, otherwise the interval is already open and dont do anything
+          newTimeStampArray.push(stamp);
         }
       } else if (stamp.action === "close") {
         openIntervals--;
+        // close the interval, otherwise the interval is still open due to another interval and don't do anything
         if (openIntervals === 0) {
-          newTimeStampArray.push(stamp); // close the interval, otherwise the interval is stil open due to another interval and dont do anything
+          newTimeStampArray.push(stamp);
         }
       }
     }
@@ -73,18 +80,12 @@ export class IntervalManager {
     }
 
     // remove zero length intervals
-    const copyIntervalArray = this.intervalArray;
+    const copyOfIntervalArray = this.intervalArray;
     this.intervalArray = [];
-    for (const interval of copyIntervalArray) {
+    for (const interval of copyOfIntervalArray) {
       if (interval[1] !== interval[0]) {
         this.intervalArray = [...this.intervalArray, interval];
       }
     }
-  }
-
-  public getIntervals() {
-    this.computeIntervals()
-    // console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
-    return this.intervalArray;
   }
 }
