@@ -35,6 +35,25 @@ test("should return [[0,20]]", () => {
   expect(obtainedArray).toStrictEqual(expectedArray);
 });
 
+test("should return [[0,2]] -- irrational numbers", () => {
+    // Arrange
+    const expectedArray = [[0, 2]];
+    const manager = new IntervalManager();
+  
+    // Act
+    const intervals: Interval[] = [
+      [0, Math.sqrt(2)],
+      [Math.sqrt(2), 2],
+    ];
+    intervals.forEach((x) => manager.addInterval(x));
+  
+    const obtainedArray = manager.getIntervals();
+    console.log(`obtainedArray: ${JSON.stringify(obtainedArray)}`);
+  
+    // Assert
+    expect(obtainedArray).toStrictEqual(expectedArray);
+});
+
 test("should return [[0,50]]", () => {
   // Arrange
   const expectedArray = [[0, 50]];
