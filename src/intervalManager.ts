@@ -29,6 +29,11 @@ export class IntervalManager {
     this.timeStampArray.push(closeStamp);
   }
 
+  public getIntervals() {
+    this.computeIntervals();
+    return this.intervalArray;
+  }
+
   private computeIntervals() {
     // sort sort by time, if the times are equal, then open first
     // this avoids contiguous intervals in the next step
@@ -80,10 +85,5 @@ export class IntervalManager {
         this.intervalArray = [...this.intervalArray, interval];
       }
     }
-  }
-
-  public getIntervals() {
-    this.computeIntervals();
-    return this.intervalArray;
   }
 }
