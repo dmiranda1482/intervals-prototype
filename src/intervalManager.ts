@@ -1,5 +1,4 @@
-import { Interval } from "."
-
+export type Interval = [number, number]
 
 type TimeStampAction = 'open' | 'close'
 
