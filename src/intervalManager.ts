@@ -31,7 +31,7 @@ export class IntervalManager {
 
   private computeIntervals() {
     // sort sort by time, if the times are equal, then open first
-    // this avoid contiguous intervals in the next step
+    // this avoids contiguous intervals in the next step
     this.timeStampArray.sort((a, b) => {
       let delta = a.time - b.time;
       if (delta == 0) {
@@ -83,7 +83,7 @@ export class IntervalManager {
   }
 
   public getIntervals() {
-    this.computeIntervals()
+    this.computeIntervals();
     return this.intervalArray;
   }
 }
