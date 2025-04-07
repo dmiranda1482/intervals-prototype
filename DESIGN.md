@@ -13,26 +13,22 @@ So for instance the interval [1, 3] would always contain 1, 3 and everything in 
 
 I am also not going to bother to sanitize any data at this point. I assume that the given intervals always contain exactly two sorted numbers, so that the first is <= that the second.
 
-Furthermore, if the interval only contains a single point in time, then I remove that interval as if it does not exists.
+Furthermore, if the interval only contains a single point in time -- zero length, then I remove that interval as if it does not exists.
 
+## Definitions
 
-### An improved algorithm
+To implement the algorithm, I use the concept
+1) `time stamps`, corresponds to a point in time where an interval `open` or `close` - the `time` and `action` (open or close) is saved with it.
 
-Idea: Keep the array with the intervals always sorted after each operation.
+## Algorithm
 
-Then when an new interval is inserted we loop over the extremes of the intervals and the new one, in order... while doing that, we construct the merged array of intervals by using a state variable `open intervals`. The state variable `open intervals` would keep track of how many intervals are `open` as we step into an extreme value.
+1 > Build an array of `time stamps` when and interval is added or removed
+2 > To compute the merged intervals
+    * sort the time stamps (when they have the same time, open comes first)
+    * loop through the time stamps while keeping a counter of how many intervals are open (this can go to negative to allow removals)
+      the value of the counter is then used to generate the array of the merged intervals. I will call this process `pruning`.
+    * remove intervals with zero length, that might occur when removing intervals  
 
-How about if instead I just merge all the extremes of the intervals, `time stamps`, with label is it is a open or a close. Then when inserting a new interval I only have to loop trough. And then somehow I merge time stamps that correspond to the same instant to eliminate the case where intervals touch each other.
+Avoid doing the step 2 too often as it's computationally costly
 
-### Review the improved algorithm
-The last test with a very large number of intervals
-does not scale very well. 20000 intervals takes about 45 seconds to compute.
-
-TODO: Next, replace the call to sort by an insert of the time stamp in the right place
-
-### Remove interval
-With this logic of openIntervals counter, for the interval removals, I only need to invert the order of the action of the time stamps, that is close first and open after.
-
-### Quick Optimization
-Besides replacing the sort algorithm by an insert when adding a new interval, there is something quicker that I can do.
-If I only sort the the `time stamps` just before getting the Intervals getIntervals(), then we don't need calling for the sort so many times (I am assuming that getIntervals() is called infrequently). 
+### Future improvements
