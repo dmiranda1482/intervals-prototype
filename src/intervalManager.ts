@@ -34,7 +34,6 @@ export class IntervalManager {
     }
     this.timeStampArray.push(openStamp);
     this.timeStampArray.push(closeStamp);
-    this.computeIntervals()
    }
 
   private computeIntervals() {
@@ -91,6 +90,7 @@ export class IntervalManager {
   }
 
   public getIntervals() {
+    this.computeIntervals()
     // console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
     return this.intervalArray;
   }
