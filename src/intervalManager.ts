@@ -16,25 +16,20 @@ export class IntervalManager {
   private intervalArray: Interval[] = [];
 
   public addInterval(interval: Interval) {
-    const isRemoval = false;
-    this.addOrRemoveInterval(interval, isRemoval);
+    const openStamp = new IntervalTimeStamp(interval[0], "open");
+    const closeStamp = new IntervalTimeStamp(interval[1], "close");
+    this.timeStampArray.push(openStamp);
+    this.timeStampArray.push(closeStamp);
   }
 
   public removeInterval(interval: Interval) {
-    const isRemoval = true;
-    this.addOrRemoveInterval(interval, isRemoval);
-  }
-
-  private addOrRemoveInterval(interval: Interval, isRemoval = false) {
-    let openStamp = new IntervalTimeStamp(interval[0], "open");
-    let closeStamp = new IntervalTimeStamp(interval[1], "close");
-    if (isRemoval) {
-      openStamp = new IntervalTimeStamp(interval[0], "close");
-      closeStamp = new IntervalTimeStamp(interval[1], "open");
-    }
+    const openStamp = new IntervalTimeStamp(interval[0], "close");
+    const closeStamp = new IntervalTimeStamp(interval[1], "open");
     this.timeStampArray.push(openStamp);
     this.timeStampArray.push(closeStamp);
+  }
 
+  private computeIntervals() {
     // sort sort by time, if the times are equal, then open first
     // this avoid contiguous intervals in the next step
     this.timeStampArray.sort((a, b) => {
@@ -88,6 +83,7 @@ export class IntervalManager {
   }
 
   public getIntervals() {
+    this.computeIntervals()
     // console.log(`######----- time stamps : ${JSON.stringify(this.timeStampArray,null, 2)}`)
     return this.intervalArray;
   }
