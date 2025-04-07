@@ -20,7 +20,7 @@ To build
 
 ./README.md --- this file
 
-./DESING.md --- describes the considerations, algorithm and future improvements
+./DESIGN.md --- describes the considerations, algorithm and future improvements
 
 ./chain-of-thought.md --- describes the sequence of operations and thinking to resolve this exercise, but you might have to checkout to different branches on git to check the state of the project at the time of the writing of that document. 
 
